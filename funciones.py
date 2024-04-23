@@ -7,7 +7,7 @@ def get_figure_coordinates(data: GridData):
             if data.grid[i][j].figure:
                 coordinates.append((i, j))
     return coordinates
-
+#devuelve matriz basica para arduino
 def get_figure_content(data: GridData):
     figure_matrix = [[0 for _ in range(len(data.grid[0]))] for _ in range(len(data.grid))]
     for i in range(len(data.grid)):

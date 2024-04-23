@@ -32,24 +32,24 @@ This backend serves as the computational and data handling layer for a graphical
 
 Clone the repository and navigate into the project directory:
 
-\`\`\`bash
+```bash
 git clone https://github.com/betebetoven/orga-back
 cd orfa-final-backend
-\`\`\`
+```
 
 Install the required packages:
 
-\`\`\`bash
+```bash
 pip install fastapi uvicorn pydantic
-\`\`\`
+```
 
 ### Running the Server
 
 To run the server, use the following command:
 
-\`\`\`bash
+```bash
 uvicorn main:app --reload --port 8080
-\`\`\`
+```
 
 This command will start the server on `localhost` with port `8080`, and the `--reload` option enables auto-reload on code changes.
 

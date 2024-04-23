@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse,  StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from modelos_base import GridData
-from funciones import get_figure_coordinates, get_figure_matrix
+from funciones import get_figure_coordinates, get_figure_matrix, get_figure_content
 
 app = FastAPI()
 app.add_middleware(
@@ -22,6 +22,7 @@ async def receive_matrix(data: GridData):
     print("Coordinates of the cells with figures:", matriz_coordenadas)
     matriz_binaria = get_figure_matrix(matriz_coordenadas, data.grid)
     print("Binary matrix of the figure:", matriz_binaria)
+    print("Content of the figure:", get_figure_content(data))
     return {"message": "Grid data received successfully!"}
 
 

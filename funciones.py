@@ -48,7 +48,7 @@ def get_big_integer(data: GridData):
                 big_integer += "0"
             else:
                 figure = dict_figura_a_int[cell[0]]
-                color = dict_color_a_int[cell[1]]
-                big_integer += str(figure) + str(color)
-            big_integer += "5"
+                #color = dict_color_a_int[cell[1]]
+                big_integer += str(figure) 
+            #big_integer += "5"
     return str(big_integer)

@@ -1,6 +1,7 @@
 #include <Arduino.h>
 
 String inputData; // This will hold the incoming data
+bool processingSecondPart = false; // Flag to switch processing modes
 
 void setup() {
   Serial.begin(9600); // Initialize serial communication at 9600 bits per second.
@@ -29,10 +30,20 @@ void loop() {
         delay(1000); // Short pulse
         digitalWrite(52, LOW); // Return to read mode
         Serial.println("Processed binary input: " + inputData);
+        processingSecondPart = true; // Start processing the second part
       } else {
         Serial.println("Error: Input data must be exactly 9 bits.");
       }
       inputData = ""; // Clear inputData after processing
+    } else if (received == '\t') {
+      // End of the second part of the input
+      if (processingSecondPart) {
+        Serial.println("Processed second part: " + inputData);
+        // Add specific handling for the second part here
+        // Example: Handle each character or perform specific operations
+      }
+      inputData = ""; // Clear inputData after processing
+      processingSecondPart = false; // Reset flag
     } else if (received == 'q') {
       // Pulse the reset pin when 'q' is received
       Serial.println("reset");
@@ -40,7 +51,7 @@ void loop() {
       delay(500); // Short pulse
       digitalWrite(53, HIGH);
     } else {
-      inputData += received; // Collect each character until '\n' or 'q'
+      inputData += received; // Collect each character until '\n', '\t' or 'q'
     }
   }
 }

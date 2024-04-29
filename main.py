@@ -38,11 +38,15 @@ async def receive_matrix(data: GridData):
     print(big_num)
     #set big num as bytes
     texto_binario_para_enviar = textoBinario + "\n"
-    big_num = big_num + "\n"
+    big_num = big_num + "\t"
+    texto_completo = texto_binario_para_enviar + big_num
+    print("este es texto completo este si",texto_completo)
     big_num = big_num.encode()
+    texto_completo = texto_completo.encode()
+    
     texto_binario_para_enviar = texto_binario_para_enviar.encode()
     #PuertoSerie.write(big_num)
-    PuertoSerie.write(texto_binario_para_enviar)
+    PuertoSerie.write(texto_completo)
     
     return JSONResponse(content={"message": "Data sent successfully"})
 
@@ -64,9 +68,12 @@ async def receive_matrix_ram(data: GridData):
     print(big_num)
     #set big num as bytes
     texto_binario_para_enviar = textoBinario + "\n"
-    big_num = big_num + "\n"
+    big_num = big_num + "\t"
+    textocompleto = texto_binario_para_enviar + big_num
+    print("este es texto completo",textocompleto)
+    textocompleto = textocompleto.encode()
     big_num = big_num.encode()
-    PuertoSerie.write(texto_binario_para_enviar)
+    PuertoSerie.write(textocompleto)
     
     return JSONResponse(content={"message": "Data sent successfully"})
 

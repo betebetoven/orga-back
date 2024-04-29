@@ -12,7 +12,7 @@ void setup() {
   pinMode(53, OUTPUT); // Pin for reset signal
 
   digitalWrite(52, LOW); // Start with read mode (0)
-  digitalWrite(53, LOW); // Ensure reset signal is low
+  digitalWrite(53, HIGH); // Ensure reset signal is low
 }
 
 void loop() {
@@ -35,9 +35,10 @@ void loop() {
       inputData = ""; // Clear inputData after processing
     } else if (received == 'q') {
       // Pulse the reset pin when 'q' is received
-      digitalWrite(53, HIGH);
-      delay(500); // Short pulse
+      Serial.println("reset");
       digitalWrite(53, LOW);
+      delay(500); // Short pulse
+      digitalWrite(53, HIGH);
     } else {
       inputData += received; // Collect each character until '\n' or 'q'
     }
